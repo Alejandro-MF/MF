@@ -155,7 +155,7 @@ function validarR2() {
 
   if (esSecreto) {
     secretoEncontrado = true;
-    respuestas.reto2 = rawVal + " (Descubrió el secreto ✨)";
+    respuestas.reto2 = rawVal + " (Descubrió el secreto wtf)";
     document.body.classList.remove("hope-bg");
     
     if (typeof confetti === "function") {
@@ -201,11 +201,21 @@ function validarR3() {
     return;
   }
 
-  if (seleccionado === "Zy" || seleccionado === "Ctm") {
-    respuestas.reto3 = seleccionado;
-    cambiarPagina("page-3", "page-4");
+  respuestas.reto3 = seleccionado;
+
+  if (seleccionado === "Zy") {
+    // Mensaje rápido estilo primera pregunta y avanzar de forma normal
+    mostrarToast(" <strong>Good girl</strong> ", 1.5, () => {
+      cambiarPagina("page-3", "page-4");
+    });
+  } else if (seleccionado === "Ctm") {
+    // Flashazo de la foca con mensaje 'La tuya' y seguir de forma normal
+    mostrarFlashazoError("La tuya ", 2, () => {
+      cambiarPagina("page-3", "page-4");
+    });
   } else {
-    mostrarFlashazoError("Pues que esperas", 3);
+    // Si puso 'No', se queda ahí para que organice
+    mostrarFlashazoError("Pues que esperas", 2);
   }
 }
 
@@ -259,7 +269,7 @@ async function finalizarYEnviar() {
   }
 
   // Si descubrió el secreto, damos 3 segundos para que lea 'jakiada' en el botón
-  const tiempoEspera = secretoEncontrado ? 80 : 800;
+  const tiempoEspera = secretoEncontrado ? 100 : 500;
 
   setTimeout(() => {
     if (secretoEncontrado) {
@@ -323,3 +333,54 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
+
+// ==========================================
+// REINICIAR QUIZ
+// ==========================================
+function reiniciarQuiz() {
+  respuestas.reto1 = "";
+  respuestas.reto2 = "";
+  respuestas.reto3 = "";
+  respuestas.reto4 = "10";
+  respuestas.mensaje = "";
+  secretoEncontrado = false;
+
+  // Limpiar inputs
+  const inputR2 = document.getElementById("input-r2");
+  if (inputR2) inputR2.value = "";
+
+  const radios = document.getElementsByName("reto3");
+  for (const r of radios) r.checked = false;
+
+  const dramaRange = document.getElementById("drama-range");
+  if (dramaRange) dramaRange.value = "10";
+  const rangeDisplay = document.getElementById("range-display");
+  if (rangeDisplay) rangeDisplay.innerText = "10";
+
+  const msgFinal = document.getElementById("mensaje-final");
+  if (msgFinal) msgFinal.value = "";
+
+  const btnFinal = document.getElementById("btn-final-enviar");
+  if (btnFinal) {
+    btnFinal.disabled = false;
+    btnFinal.innerText = "TERMINAR (si fuiste precoz)";
+  }
+
+  // Ocultar todas las páginas y volver a la 0
+  const pages = document.querySelectorAll(".page");
+  pages.forEach(p => {
+    p.classList.remove("active");
+    p.classList.add("hidden");
+    p.style.display = "none";
+  });
+
+  const p0 = document.getElementById("page-0");
+  if (p0) {
+    p0.classList.remove("hidden");
+    p0.classList.add("active");
+    p0.style.display = "flex";
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
