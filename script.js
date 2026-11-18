@@ -259,7 +259,7 @@ async function finalizarYEnviar() {
   }
 
   // Si descubrió el secreto, damos 3 segundos para que lea 'jakiada' en el botón
-  const tiempoEspera = secretoEncontrado ? 400 : 1000;
+  const tiempoEspera = secretoEncontrado ? 300 : 1000;
 
   setTimeout(() => {
     if (secretoEncontrado) {
