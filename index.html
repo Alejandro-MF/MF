@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maffers - Razones por las que me caes MAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="flash-overlay" class="flash-overlay" style="display: none;">
+    <div id="flash-content" class="flash-content">
+      <div id="flash-emoji" class="flash-emoji">🦭</div>
+      <div id="flash-text" class="flash-text">¡INCORRECTO!</div>
+      <div class="flash-timer"><div id="flash-timer-bar" class="flash-timer-bar"></div></div>
+    </div>
+  </div>
+
+  <div class="bg-decorations">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <main class="quiz-container">
+    <section class="page active" id="page-0">
+      <h1 class="main-title">Razones por las que me caes <span class="highlight">M A L</span></h1>
+      <p class="subtitle-quiz">El Quiz Definitivo</p>
+      
+      <div class="welcome-box">
+        <p class="message-intro">
+          Bienvenida pequeña, si abriste mi enlace quiere decir que... alch no sé pero lo abriste y ahora tienes como <strong>1,000 virus</strong> y la maldición de las perras de la esquina 👻
+        </p>
+        <p class="process-note">
+          Tú confía en el proceso, procuré no hacerlo tan difícil debido a tus facultades mentales :3 <br> (puede haber algun secreto, no lo encontraras tbh)
+        </p>
+      </div>
+
+      <button class="btn btn-primary btn-pulse" onclick="iniciarQuiz()">
+        <span>INICIAR QUIZ</span>
+      </button>
+    </section>
+
+    <section class="page hidden" id="page-1">
+      <div class="step-indicator">Paso 1 de 5</div>
+      <h2 class="reason-title">RAZÓN 1: Te robas mis cosas 🥷</h2>
+      
+      <div class="media-card">
+        <img src="m1.jpe" alt="ladrona" class="quiz-img" onerror="this.src='https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?w=500&auto=format&fit=crop&q=60'">
+      </div>
+
+      <div class="question-box">
+        <h3>RETO 1: ¿Tus papis saben que eres lesbiana y te robas cosas ajenas?</h3>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-choice" onclick="responderP1('SI')">SÍ</button>
+        <button class="btn btn-choice" onclick="responderP1('NO')">NO</button>
+      </div>
+    </section>
+
+    <section class="page hidden" id="page-2">
+      <div class="step-indicator">Paso 2 de 5</div>
+      <h2 class="reason-title">RAZÓN 2: ¿¡Quién NO come mango por PENA!? 🥭</h2>
+      
+      <div class="media-card">
+        <img src="m2.jpe" alt="mango" class="quiz-img" onerror="this.src='https://images.unsplash.com/photo-1553279768-865429fa0078?w=500&auto=format&fit=crop&q=60'">
+      </div>
+
+      <div class="question-box">
+        <h3>RETO 2: Yo sí como mango, pero aparte también como...</h3>
+        <p class="rules-tag">NO vale decir vrga</p>
+      </div>
+
+      <div class="input-form">
+        <input type="text" id="input-r2" class="text-input" placeholder="Escribe tu respuesta aquí..." autocomplete="off">
+        <button class="btn btn-primary" onclick="validarR2()">ENVIAR</button>
+      </div>
+    </section>
+
+    <section class="page hidden" id="page-3">
+      <div class="step-indicator">Paso 3 de 5</div>
+      <h2 class="reason-title">RAZÓN 3: DESORGANIZADA (KYSLF)</h2>
+      
+      <div class="media-card">
+        <img src="m3.jpe" alt="tu en el techo" class="quiz-img" onerror="this.src='https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=500&auto=format&fit=crop&q=60'">
+      </div>
+
+      <div class="question-box">
+        <h3>RETO 3: Barre y trapea mi 2da casa, incluye organizar muebles y ropa mínimo pls</h3>
+        <h4 style="margin-top: 15px; color: #ffd1dc;">¿Ya organizaste todo?</h4>
+      </div>
+
+      <div class="radio-group">
+        <label class="radio-card">
+          <input type="radio" name="reto3" value="Zy">
+          <span class="custom-radio"></span>
+          <span class="radio-label">Zy </span>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="reto3" value="No">
+          <span class="custom-radio"></span>
+          <span class="radio-label">No </span>
+        </label>
+        <label class="radio-card">
+          <input type="radio" name="reto3" value="Ctm">
+          <span class="custom-radio"></span>
+          <span class="radio-label">Ctm🖕</span>
+        </label>
+      </div>
+
+      <button class="btn btn-primary" style="margin-top: 20px;" onclick="validarR3()">CONTINUAR </button>
+    </section>
+
+    <section class="page hidden" id="page-4">
+      <div class="step-indicator">Paso 4 de 5</div>
+      <h2 class="reason-title">RAZÓN 4: Dramática (a veces)</h2>
+      
+      <div class="media-card">
+        <img src="m4.jpe" alt="drama" class="quiz-img" onerror="this.src='https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=60'">
+      </div>
+
+      <div class="question-box">
+        <h3>RETO 4: Ni yo se como te aguanto, ese es reto pa mi diario 👻<br> Pero tu que tanto me aguantas?</h3>
+      </div>
+
+      <div class="range-container">
+        <div class="range-value" id="range-display">10</div>
+        <input type="range" id="drama-range" min="1" max="10" value="10" class="slider" oninput="document.getElementById('range-display').innerText = this.value">
+        <div class="range-labels">
+          <span>1 (poco)</span>
+          <span>10 (Te amo, casate conmigo)</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" style="margin-top: 25px;" onclick="responderP4()">SIGUIENTE</button>
+    </section>
+
+    <section class="page hidden" id="page-5">
+      <div class="step-indicator">Paso 5 de 5</div>
+      <h2 class="reason-title">RAZÓN 5: A pesar de todo... se te tolera mas o menos</h2>
+      
+      <div class="media-card">
+        <img src="m5.jpe" alt="final" class="quiz-img" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=60'">
+      </div>
+
+      <div class="question-box">
+        <h3>Última pregunta: No hay pregunta, deja tu mensaje tkm :D</h3>
+        <p style="color: #cbd5e1; font-size: 0.9rem;">Escribe algo sincero (o una mentada de madre o no):</p>
+      </div>
+
+      <div class="input-form">
+        <textarea id="mensaje-final" class="text-area" rows="4" placeholder="Escribe tu msj de odio :D"></textarea>
+        <button class="btn btn-success btn-pulse" id="btn-final-enviar" onclick="finalizarYEnviar()">
+          <span>TERMINAR</span>
+        </button>
+      </div>
+    </section>
+
+        <!-- PAGINA SECRETO: SE ACTIVA SI ESCRIBIO SU NOMBRE EN RETO 2 -->
+    <section class="page hidden" id="page-secret">
+      <div class="finish-card">
+        <div class="finish-icon">WTF LO ENCONTRASTE?!</div>
+        <h2 class="finish-title" style="color: #ffb703; font-size: 2rem;">ENCONTRASTE EL SECRETO</h2>
+        <div class="welcome-box" style="margin-top: 1.5rem; text-align: left;">
+          <!-- AQUI PUEDES ESCRIBIR EL TEXTO QUE TU QUIERAS -->
+          <p class="message-intro" style="font-size: 1.1rem; color: #ffffff;">
+            Ok, quiza queria que descubiras esto o quiza no... Pero bueno lo hiciste lo lograste omg, no crei que pusieras tanta atencion. Anyways si ya estas leyendo esto
+            Maria, quiero que sepas que estos meses que hemos estado hablando han sido increibles, genuinamente he disfrutado de tu compañia en general desde hace tiempo, y             ya te lo he dicho me pareces una persona extraordinaria, interesante, lista, emocional, hermosa y a veces divertida A VECES y haces que mi estadia en la Uni no sea tan
+            aburrida y la haces más sobrellevadera. Esto que te digo no son solo palabras aleatorias nada mas porque si, te digo esto (que no es ni la mitad de lo que traigo
+            guardado) porque me importas y necesito sacar esto de mi pecho, esto que me haces sentir no es normal en mi te lo juro y fack hay tanto que decir pero no tengo
+            como demostrarlo, soy hombre ok no le se, pero si se que te quiero mucho, demasiado aunque no lo creas jaja. Quiza sea mutuo o quiza no, cualquiera de las dos
+            sepas que eso no cambiara mi opnion de ti. 
+          </p>
+        </div>
+        
+        <button class="btn btn-primary btn-pulse" style="margin-top: 20px;" onclick="continuarDesdeSecreto()">
+          <span>Porfa si lo leiste matame y luego te matas tu y te olvidas de todo va?</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="page hidden" id="page-6">
+      <div class="finish-card">
+        <div class="finish-icon">👽</div>
+        <h2 class="finish-title">Concluiste</h2>
+        <p class="finish-text">Si le dices a alguien de esto juro que te mato y luego me mato yo porque yo no soy asi de que asi ok? :3</p>
+        <p class="finish-subtext">Veredicto final: ꓵ ƎꓥOꓶ I </p>
+        
+        <button class="btn btn-danger" onclick="cerrarWeb()">
+          <span>CERRAR</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
